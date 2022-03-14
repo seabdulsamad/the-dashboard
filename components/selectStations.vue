@@ -7,6 +7,7 @@
     item-value="id"
     :search-input.sync="search"
     :loading="loading"
+    @input="$emit('input', selection)"
   ></v-autocomplete>
 </template>
 <script>
