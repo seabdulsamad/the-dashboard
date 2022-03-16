@@ -5,7 +5,7 @@
       <v-spacer />
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container grid-list-lg>
         <Nuxt />
       </v-container>
     </v-main>
@@ -18,5 +18,6 @@ export default {
   data: () => ({
     title: 'The Dashboard',
   }),
+  
 }
 </script>
