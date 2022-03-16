@@ -1,11 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar dark color="primary" fixed app dense>
-      <v-toolbar-title v-text="title" />
+    <v-app-bar dark color="primary" fixed app>
+      <div>
+        <v-img
+          src="https://roadsurfer.com/wp-content/themes/roadsurfer/_/img/logo-text.svg"
+          :height="30"
+          contain
+        />
+      </div>
       <v-spacer />
     </v-app-bar>
     <v-main>
-      <v-container grid-list-lg>
+      <v-container fluid grid-list-lg class="pa-0">
         <Nuxt />
       </v-container>
     </v-main>
@@ -18,6 +24,5 @@ export default {
   data: () => ({
     title: 'The Dashboard',
   }),
-  
 }
 </script>
