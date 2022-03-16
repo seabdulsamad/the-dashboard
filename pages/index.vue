@@ -20,21 +20,33 @@
     <v-flex sm12>
       <v-card outlined>
         <v-card-text>
-          <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
-            <v-icon>mdi-chevron-left</v-icon>
-          </v-btn>
-          {{ label }}
-          <v-btn icon class="ma-2" @click="$refs.calendar.next()">
-            <v-icon>mdi-chevron-right</v-icon>
-          </v-btn>
+          <v-layout row wrap align-center>
+            <v-flex>
+              <v-btn icon class="ma-2" @click="$refs.calendar.prev()">
+                <v-icon>mdi-chevron-left</v-icon>
+              </v-btn>
+              {{ label }}
+              <v-btn icon class="ma-2" @click="$refs.calendar.next()">
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-spacer />
+            <v-flex shrink>
+              <v-btn-toggle small v-model="viewType" mandatory>
+                <v-btn small value="week">Week</v-btn>
+                <v-btn small value="day">Day</v-btn>
+              </v-btn-toggle>
+            </v-flex>
+          </v-layout>
           <v-calendar
             ref="calendar"
             v-model="currentDate"
             color="primary"
             :events="bookings"
-            type="week"
+            :type="viewType"
             @change="onCalendarChange"
             @click:event="($event) => (bookingDetail = $event.event)"
+            @click:date="($event) => (viewType = 'day')"
           >
           </v-calendar>
         </v-card-text>
@@ -54,6 +66,7 @@ export default {
   data: () => ({
     station: null,
     loading: false,
+    viewType: 'week',
     currentDate: new Date().toISOString().substr(0, 10),
     bookings: [],
     label: null,
@@ -65,9 +78,11 @@ export default {
   methods: {
     onCalendarChange(event) {
       this.label =
-        this.$moment(event.start.date).format('LL') +
-        ' - ' +
-        this.$moment(event.end.date).format('LL')
+        event.start.date === event.end.date
+          ? this.$moment(event.start.date).format('LL')
+          : this.$moment(event.start.date).format('LL') +
+            ' - ' +
+            this.$moment(event.end.date).format('LL')
     },
     fetchEvents(stationId) {
       if (stationId) {
