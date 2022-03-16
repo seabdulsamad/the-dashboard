@@ -40,6 +40,11 @@ export default {
     bookingId: { type: String, default: null },
     stationId: { type: Number, default: null },
   },
+  data: () => ({
+    drawer: false,
+    detail: null,
+    loading: false,
+  }),
   watch: {
     bookingId: {
       immediate: true,
@@ -57,11 +62,6 @@ export default {
       }
     },
   },
-  data: () => ({
-    drawer: false,
-    detail: null,
-    loading: false,
-  }),
   methods: {
     fetchBookingDetails() {
       this.loading = true
