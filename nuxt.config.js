@@ -20,7 +20,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   router: {
-    base: '/', // process.env.NODE_ENV === 'production' ? '/the-dashboard/' : '/',
+    base: 'https://seabdulsamad.github.io/the-dashboard/', // process.env.NODE_ENV === 'production' ? '/the-dashboard/' : '/',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
