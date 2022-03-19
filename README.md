@@ -1,5 +1,5 @@
 # dashboard
-
+A simple dashbord for a company agent to to manage the bookings on a specified station/location. You may see the [demo](https://seabdulsamad.github.io/the-dashboard/) for details features.
 ## Build Setup
 
 ```bash
