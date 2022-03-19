@@ -87,7 +87,7 @@ export default {
   name: 'IndexPage',
   components: { bookingDetailDrawer },
   data: () => ({
-    stationId: 1,
+    stationId: null,
     loading: false,
     viewType: 'week',
     currentDate: new Date().toISOString().substr(0, 10),
