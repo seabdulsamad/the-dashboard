@@ -64,7 +64,7 @@
                 color="primary"
                 :events="bookings"
                 :type="viewType"
-                event-overlap-mode="column"
+                event-overlap-mode="stack"
                 @change="onCalendarChange"
                 @click:event="($event) => (bookingDetailId = $event.event.id)"
                 @click:date="($event) => (viewType = 'day')"
@@ -119,7 +119,9 @@ export default {
               ).format('hh:mm A')}`,
               start: new Date(item.startDate),
               end: new Date(item.endDate),
-              timed: true,
+              timed:
+                this.$moment(item.startDate).format('LL') ===
+                this.$moment(item.endDate).format('LL'),
             }
           })
         })
