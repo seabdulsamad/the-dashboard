@@ -64,6 +64,7 @@
                 color="primary"
                 :events="bookings"
                 :type="viewType"
+                event-overlap-mode="column"
                 @change="onCalendarChange"
                 @click:event="($event) => (bookingDetailId = $event.event.id)"
                 @click:date="($event) => (viewType = 'day')"
@@ -87,7 +88,7 @@ export default {
   name: 'IndexPage',
   components: { bookingDetailDrawer },
   data: () => ({
-    stationId: null,
+    stationId: 1,
     loading: false,
     viewType: 'week',
     currentDate: new Date().toISOString().substr(0, 10),
@@ -113,9 +114,12 @@ export default {
           this.bookings = this._.map(response.data.bookings, (item) => {
             return {
               ...item,
-              name: `Ref#${item.id} - ${item.customerName}`,
+              name: `Ref#${item.id} - ${item.customerName} - ${this.$moment(
+                item.startDate
+              ).format('hh:mm A')}`,
               start: new Date(item.startDate),
               end: new Date(item.endDate),
+              timed: true,
             }
           })
         })
