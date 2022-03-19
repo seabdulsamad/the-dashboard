@@ -12,7 +12,7 @@
 // this.$store.getters["collection/getDataByKey"]("countries");
 
 export const state = () => ({
-  countries: null,
+  countries: [],
 })
 
 export const mutations = {
